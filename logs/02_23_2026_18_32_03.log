@@ -1,0 +1,7 @@
+[ 2026-02-23 18:32:03,347] INFO - root - Logging Initialized.
+[ 2026-02-23 18:32:03,811] INFO - root - Reading csv from the file path: E:/Career/Professional_ML/02_Machine_Learning/01_Projects/student_performance_prediction/data/ResearchInformation3.csv
+[ 2026-02-23 18:32:03,811] INFO - root - Loaded successfully, shape:(493, 16)
+[ 2026-02-23 18:32:03,827] INFO - root - Connecting to DB
+[ 2026-02-23 18:32:04,115] INFO - root - Inserting 493 records into collection: StudentData
+[ 2026-02-23 18:32:06,482] INFO - root - Data Insertion Successful
+[ 2026-02-23 18:32:06,482] INFO - root - Pipeline Completed Successfully. Total inserted: 493

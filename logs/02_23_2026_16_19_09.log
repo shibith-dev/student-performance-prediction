@@ -1,3 +1,0 @@
-[ 2026-02-23 16:19:09,741] INFO - root - Logging Initialized.
-[ 2026-02-23 16:19:09,741] INFO - root - connecting to mongodb
-[ 2026-02-23 16:19:11,379] ERROR - root - Conection failed
