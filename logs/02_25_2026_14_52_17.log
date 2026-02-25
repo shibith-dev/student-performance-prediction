@@ -1,0 +1,15 @@
+[ 2026-02-25 14:52:17,575] INFO - root - Logging Initialized.
+[ 2026-02-25 14:52:21,673] INFO - root - Data Ingestion Initialized.
+[ 2026-02-25 14:52:21,673] INFO - root - Connecting to mongoDB
+[ 2026-02-25 14:52:21,972] INFO - root - Connection Successfull
+[ 2026-02-25 14:52:21,972] INFO - root - Loading the data from mongodb
+[ 2026-02-25 14:52:23,159] INFO - root - 493 records were Successfully loaded
+[ 2026-02-25 14:52:23,163] INFO - root - Removed _id column and replaced 'na' into actuall null values
+[ 2026-02-25 14:52:23,165] INFO - root - Returned 493 records
+[ 2026-02-25 14:52:23,165] INFO - root - Creating the feature_Store directory.
+[ 2026-02-25 14:52:23,184] INFO - root - Successfully saved the CSV file.
+[ 2026-02-25 14:52:23,184] INFO - root - Train Test Split started.
+[ 2026-02-25 14:52:23,184] INFO - root - Train Test Split Completed. Train shape: (394, 16), Test: (99, 16)
+[ 2026-02-25 14:52:23,184] INFO - root - Creating artifact directory.
+[ 2026-02-25 14:52:23,200] INFO - root - Train Test sets saved Successfully.
+[ 2026-02-25 14:52:23,200] INFO - root - Data Ingestion Completed Successfully.

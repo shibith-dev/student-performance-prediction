@@ -3,8 +3,6 @@ import numpy as np
 import os
 from src.logging.logging import logging
 from src.exception.exception import CustomException
-import sys
-import json
 import pymongo
 from dotenv import load_dotenv
 
@@ -25,11 +23,13 @@ class StudentDataExtract:
     def csv_to_json(self, file_path):
         try:
             logging.info(f"Reading csv from the file path: {file_path}")
+
             df = pd.read_csv(file_path)
             df.reset_index(drop=True, inplace=True) # remove extra index
+
             logging.info(f"Loaded successfully, shape:{df.shape}")
 
-            records = list(json.loads(df.T.to_json()).values())
+            records = df.to_dict(orient="records")
             return records
         except Exception as e:
             logging.error("Error occured while converting CSV into JSON")
@@ -60,11 +60,9 @@ if __name__ == "__main__":
         COLLECTION = "StudentData"
 
         studentObj = StudentDataExtract()
-
         records = studentObj.csv_to_json(file_path=FILE_PATH)
-
         no_of_records = studentObj.insert_data_to_mongodb(records=records, database=DATABASE, collection=COLLECTION)
-    
+        
         logging.info(f"Pipeline Completed Successfully. Total inserted: {no_of_records}")
     except Exception as e:
         logging.error(f"Pipeline Failed")
