@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from src.entity.config_entity import DataIngestionConfig
+from src.entity.artifact_entity import DataIngestionArtifact
 from src.exception.exception import CustomException
 from src.logging.logging import logging
 from dotenv import load_dotenv
@@ -86,6 +87,8 @@ class DataIngestion:
             df = self.save_data_to_feature_store(dataframe=df)
             self.apply_train_test_split(dataframe=df)
             logging.info("Data Ingestion Completed Successfully.")
+            data_ingestion_artifacts = DataIngestionArtifact(train_file_path=self.data_ingestion_config.train_file_path, test_file_path=self.data_ingestion_config.test_file_path)
+            return data_ingestion_artifacts
         except Exception as e:
             logging.error("Data Ingestion Failed.")
             raise CustomException(e)

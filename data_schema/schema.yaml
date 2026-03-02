@@ -1,0 +1,37 @@
+columns:
+  - Department    
+  - Gender
+  - HSC
+  - SSC
+  - Income
+  - Hometown
+  - Computer
+  - Preparation
+  - Gaming
+  - Attendance
+  - Job
+  - English
+  - Extra
+  - Semester
+  - Last
+  - Overall
+
+numerical_columns:
+  - HSC
+  - SSC
+  - Computer
+  - English
+  - Semester
+  - Last
+  - Overall
+
+categorical_columns:
+  - Department
+  - Gender
+  - Income
+  - Hometown
+  - Preparation
+  - Gaming
+  - Attendance
+  - Job
+  - Extra 

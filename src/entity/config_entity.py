@@ -29,6 +29,19 @@ class DataIngestionConfig:
         self.database_name = constants.DATA_INGESTION_DATABASE_NAME
         self.collection_name = constants.DATA_INGESTION_COLLECTION_NAME
 
+class DataValidationConfig:
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        self.data_validation_dir = os.path.join(training_pipeline_config.artifact_dir, constants.DATA_VALIDATION_DIR_NAME)
+        self.data_validation_data_drift_dir = os.path.join(self.data_validation_dir, constants.DATA_VALIDATION_DRIFT_REPORT_DIR)
+        self.data_validation_data_drift_file_path = os.path.join(self.data_validation_data_drift_dir, constants.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME)
+        self.data_validation_data_valid_dir = os.path.join(self.data_validation_dir, constants.DATA_VALIDATION_VALID_DIR)
+        self.data_validation_data_valid_train_file_path = os.path.join(self.data_validation_data_valid_dir, constants.TRAIN_FILE_NAME)
+        self.data_validation_data_valid_test_file_path = os.path.join(self.data_validation_data_valid_dir, constants.TEST_FILE_NAME)
+        self.data_validation_data_invalid_dir = os.path.join(self.data_validation_dir, constants.DATA_VALIDATION_INVALID_DIR)
+        self.data_validation_data_invalid_train_file_path = os.path.join(self.data_validation_data_invalid_dir, constants.TRAIN_FILE_NAME)
+        self.data_validation_data_invalid_test_file_path = os.path.join(self.data_validation_data_invalid_dir, constants.TEST_FILE_NAME)
+
+
 
 
 
