@@ -1,0 +1,31 @@
+[ 2026-03-06 07:38:37,166] INFO - root - Logging Initialized.
+[ 2026-03-06 07:38:50,577] INFO - root - Data Ingestion Initialized.
+[ 2026-03-06 07:38:50,577] INFO - root - Connecting to mongoDB
+[ 2026-03-06 07:38:51,340] INFO - root - Connection Successfull
+[ 2026-03-06 07:38:51,341] INFO - root - Loading the data from mongodb
+[ 2026-03-06 07:38:52,500] INFO - root - 493 records were Successfully loaded
+[ 2026-03-06 07:38:52,505] INFO - root - Removed _id column and replaced 'na' into actuall null values
+[ 2026-03-06 07:38:52,506] INFO - root - Returned 493 records
+[ 2026-03-06 07:38:52,506] INFO - root - Creating the feature_Store directory.
+[ 2026-03-06 07:38:52,535] INFO - root - Successfully saved the CSV file.
+[ 2026-03-06 07:38:52,535] INFO - root - Train Test Split started.
+[ 2026-03-06 07:38:52,539] INFO - root - Train Test Split Completed. Train shape: (394, 16), Test: (99, 16)
+[ 2026-03-06 07:38:52,539] INFO - root - Creating artifact directory.
+[ 2026-03-06 07:38:52,549] INFO - root - Train Test sets saved Successfully.
+[ 2026-03-06 07:38:52,551] INFO - root - Data Ingestion Completed Successfully.
+[ 2026-03-06 07:38:52,551] INFO - root - Reading yaml file from data_schema\schema.yaml
+[ 2026-03-06 07:38:52,556] INFO - root - Schema Loaded successfully.
+[ 2026-03-06 07:38:52,556] INFO - root - Data Validation Initiated.
+[ 2026-03-06 07:38:52,556] INFO - root - Reading dataframe.
+[ 2026-03-06 07:38:52,561] INFO - root - Reading dataframe.
+[ 2026-03-06 07:38:52,564] INFO - root - Dataset Loaded.
+[ 2026-03-06 07:38:52,564] INFO - root - Validating total number of columns received.
+[ 2026-03-06 07:38:52,564] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-06 07:38:52,565] INFO - root - Validating total number of columns received.
+[ 2026-03-06 07:38:52,565] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-06 07:38:52,565] INFO - root - Checking Data Drift.
+[ 2026-03-06 07:38:52,673] INFO - root - Drift status: True
+[ 2026-03-06 07:38:52,682] INFO - root - Data Validation Completed.
+[ 2026-03-06 07:38:52,682] INFO - root - Initializing Data Transformation.
+[ 2026-03-06 07:38:52,694] INFO - root - Fitting preprocessor on training data.
+[ 2026-03-06 07:38:52,742] INFO - root - Data Transformation Completed
