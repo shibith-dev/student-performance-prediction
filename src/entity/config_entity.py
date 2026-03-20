@@ -50,6 +50,11 @@ class DataTransformationConfig:
         self.transformed_test_file_path = os.path.join(self.data_transformation_dir, constants.DATA_TRANSFORMATION_TRANSFORMED_DIR_NAME, constants.DATA_TRANSFORMATION_TEST_FILE_PATH)
         self.target_column = constants.TARGET_COLUMN
 
+class ModelTrainerConfig:
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        self.model_trainer_dir = os.path.join(training_pipeline_config.artifact_dir, constants.MODEL_TRAINER_DIR_NAME)
+        self.trained_model_file_path = os.path.join(self.model_trainer_dir, constants.MODEL_TRAINER_TRAINED_MODEL_DIR, constants.MODEL_TRAINER_TRAINED_MODEL_NAME)
+        self.expected_r2_score = constants.MODEL_TRAINER_EXPECTED_SCORE
 
 
         

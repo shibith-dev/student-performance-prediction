@@ -66,7 +66,7 @@ class DataIngestion:
     def apply_train_test_split(self, dataframe:pd.DataFrame):
         try:
             logging.info("Train Test Split started.")
-            train, test = train_test_split(dataframe, test_size=self.data_ingestion_config.train_test_split_ratio)
+            train, test = train_test_split(dataframe, test_size=self.data_ingestion_config.train_test_split_ratio, random_state=42)
             logging.info(f"Train Test Split Completed. Train shape: {train.shape}, Test: {test.shape}")
 
             logging.info("Creating artifact directory.")

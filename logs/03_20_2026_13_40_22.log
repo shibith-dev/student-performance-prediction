@@ -1,0 +1,55 @@
+[ 2026-03-20 13:40:22,995] INFO - root - Logging Initialized.
+[ 2026-03-20 13:40:30,840] INFO - root - Data Ingestion Initialized.
+[ 2026-03-20 13:40:30,840] INFO - root - Connecting to mongoDB
+[ 2026-03-20 13:40:31,338] INFO - root - Connection Successfull
+[ 2026-03-20 13:40:31,338] INFO - root - Loading the data from mongodb
+[ 2026-03-20 13:40:32,461] INFO - root - 493 records were Successfully loaded
+[ 2026-03-20 13:40:32,469] INFO - root - Removed _id column and replaced 'na' into actuall null values
+[ 2026-03-20 13:40:32,469] INFO - root - Returned 493 records
+[ 2026-03-20 13:40:32,469] INFO - root - Creating the feature_Store directory.
+[ 2026-03-20 13:40:32,594] INFO - root - Successfully saved the CSV file.
+[ 2026-03-20 13:40:32,594] INFO - root - Train Test Split started.
+[ 2026-03-20 13:40:32,594] INFO - root - Train Test Split Completed. Train shape: (394, 16), Test: (99, 16)
+[ 2026-03-20 13:40:32,594] INFO - root - Creating artifact directory.
+[ 2026-03-20 13:40:32,618] INFO - root - Train Test sets saved Successfully.
+[ 2026-03-20 13:40:32,622] INFO - root - Data Ingestion Completed Successfully.
+[ 2026-03-20 13:40:32,622] INFO - root - Reading yaml file from data_schema\schema.yaml
+[ 2026-03-20 13:40:32,627] INFO - root - Schema Loaded successfully.
+[ 2026-03-20 13:40:32,627] INFO - root - Data Validation Initiated.
+[ 2026-03-20 13:40:32,627] INFO - root - Reading dataframe.
+[ 2026-03-20 13:40:32,643] INFO - root - Reading dataframe.
+[ 2026-03-20 13:40:32,644] INFO - root - Dataset Loaded.
+[ 2026-03-20 13:40:32,644] INFO - root - Validating total number of columns received.
+[ 2026-03-20 13:40:32,644] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-20 13:40:32,644] INFO - root - Validating total number of columns received.
+[ 2026-03-20 13:40:32,644] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-20 13:40:32,644] INFO - root - Checking Data Drift.
+[ 2026-03-20 13:40:32,734] INFO - root - Drift status: True
+[ 2026-03-20 13:40:32,750] INFO - root - Data Validation Completed.
+[ 2026-03-20 13:40:32,751] INFO - root - Initializing Data Transformation.
+[ 2026-03-20 13:40:32,760] INFO - root - Fitting preprocessor on training data.
+[ 2026-03-20 13:40:32,841] INFO - root - Data Transformation Completed
+[ 2026-03-20 13:40:32,843] INFO - root - Starting Model Training.
+[ 2026-03-20 13:40:32,843] INFO - root - Loading transformed train and test data.
+[ 2026-03-20 13:40:32,843] INFO - root - Data shapes - x_train: (394, 28), y_train: (394,), x_test: (99, 28), y_test: (99,)
+[ 2026-03-20 13:40:32,846] INFO - root - Starting hyperparameter tuning for models using RandomizedSearchCV.
+[ 2026-03-20 13:40:47,517] INFO - root - Training completed for: Random Forest. Best R2 Score: 0.871977630645835
+[ 2026-03-20 13:40:47,590] INFO - root - Training completed for: Decision Tree. Best R2 Score: 0.8203072293314535
+[ 2026-03-20 13:40:48,751] INFO - root - Training completed for: Gradient Boosting. Best R2 Score: 0.8504296086656492
+[ 2026-03-20 13:40:50,474] INFO - root - Training completed for: AdaBoost. Best R2 Score: 0.8432351017664582
+[ 2026-03-20 13:40:51,152] INFO - root - Training completed for: XGBoost. Best R2 Score: 0.8431727561963164
+[ 2026-03-20 13:40:51,195] INFO - root - Training completed for: Linear Regression. Best R2 Score: 0.8256100359706607
+[ 2026-03-20 13:40:51,258] INFO - root - Training completed for: Ridge. Best R2 Score: 0.8340774697519312
+[ 2026-03-20 13:40:51,310] INFO - root - Training completed for: Lasso. Best R2 Score: 0.8451611466811232
+[ 2026-03-20 13:40:51,368] INFO - root - Training completed for: Elastic Net. Best R2 Score: 0.8442383770010308
+[ 2026-03-20 13:40:51,368] INFO - root - Model Report successfully generated.
+[ 2026-03-20 13:40:51,368] INFO - root - Best Model : Random Forest with a score : 0.871977630645835
+[ 2026-03-20 13:40:51,497] INFO - root - Calculating evaluation metrics (RMSE, MAE, R2 Score)
+[ 2026-03-20 13:40:51,607] INFO - root - Calculating evaluation metrics (RMSE, MAE, R2 Score)
+[ 2026-03-20 13:40:51,607] INFO - root - Train Score : RegressionMetricArtifact(r2_score=0.97911300144143, rmse=0.08470515257800658, mae=0.03561656749341924)
+[ 2026-03-20 13:40:51,607] INFO - root - Test Score : RegressionMetricArtifact(r2_score=0.9178748354725643, rmse=0.17509848629462246, mae=0.11152673514765572)
+[ 2026-03-20 13:40:51,607] INFO - root - Logging experiment results to MLflow for model: RandomForestRegressor
+[ 2026-03-20 13:41:26,524] INFO - root - Successfully logged metrics and model to MLflow for RandomForestRegressor
+[ 2026-03-20 13:41:26,907] INFO - root - Saved the best model to artifacts\03_20_2026_13_40_21\model_trainer\trained_model\model.pkl
+[ 2026-03-20 13:41:27,278] INFO - root - Saved the final model (preprocessor + model) to final_models
+[ 2026-03-20 13:41:27,278] INFO - root - Model training pipeline completed successfully.

@@ -3,7 +3,7 @@ from src.entity.artifact_entity import DataTransformationArtifacts, DataValidati
 from src.exception.exception import CustomException
 from src.logging.logging import logging
 
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
@@ -57,7 +57,8 @@ class DataTransformation:
 
             numeric_pipeline= Pipeline(
                 steps=[
-                    ("imputer", SimpleImputer(strategy="median"))
+                    ("imputer", SimpleImputer(strategy="median")),
+                    ("scaler",StandardScaler())
                 ]
             )
 
