@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--text-main);
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .container { padding: 25px; }
+        }
+
+        .group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        input, select {
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            outline: none;
+            background-color: #f9fafb;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            background-color: #fff;
+        }
+
+        .predict-area {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        button {
+            width: 100%;
+            max-width: 300px;
+            padding: 14px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .result-box {
+            padding: 15px 30px;
+            border-radius: 12px;
+            background: #f0f7ff;
+            border: 1px dashed var(--primary-color);
+            text-align: center;
+        }
+
+        .result-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #64748b;
+            text-decoration: none;
+        }
+
+        .back-link:hover { color: #4f46e5; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+     <h2>Student Performance Prediction</h2>
+
+    <form method="POST" action="/predict">
+        <div class="form-grid">
+            
+            <div class="section">
+                <div class="group">
+                    <label>Department</label>
+                    <select name="Department">
+                        <option>Computer Science and Engineering</option>
+                        <option>English</option>
+                        <option>Journalism, Communication and Media Studies</option>
+                        <option>Political Science</option>
+                        <option>Business Administration</option>
+                        <option>Economics</option>
+                        <option>Sociology</option>
+                        <option>Law and Human Rights</option>
+                        <option>Public Health</option>
+                        <option>Electrical and Electronic Engineering</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Gender</label>
+                    <select name="Gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Income Level</label>
+                    <select name="Income">
+                        <option>Low (Below 15,000)</option>
+                        <option>Lower middle (15,000-30,000)</option>
+                        <option>Upper middle (30,000-50,000)</option>
+                        <option>High (Above 50,000)</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Hometown Type</label>
+                    <select name="Hometown">
+                        <option>City</option>
+                        <option>Village</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Computer Proficiency (1-5)</label>
+                    <select name="Computer">
+                        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>English Proficiency (1-5)</label>
+                    <select name="English">
+                        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                    </select>
+                </div>
+                
+                <div class="group">
+                    <label>Extra Activities</label>
+                    <select name="Extra">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Part-time Job</label>
+                    <select name="Job">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="group">
+                    <label>HSC Score (0-5)</label>
+                    <input type="number" name="HSC" step="0.01" min="0" max="5" placeholder="e.g. 4.50" required>
+                </div>
+
+                <div class="group">
+                    <label>SSC Score (0-5)</label>
+                    <input type="number" name="SSC" step="0.01" min="0" max="5" placeholder="e.g. 4.80" required>
+                </div>
+
+                <div class="group">
+                    <label>Daily Prep Time</label>
+                    <select name="Preparation">
+                        <option>0-1 Hour</option>
+                        <option>2-3 Hours</option>
+                        <option>More than 3 Hours</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Daily Gaming Time</label>
+                    <select name="Gaming">
+                        <option>0-1 Hour</option>
+                        <option>1-3 Hours</option>
+                        <option>More than 3 Hours</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Attendance Rate</label>
+                    <select name="Attendance">
+                        <option>Below 40%</option>
+                        <option>40%-59%</option>
+                        <option>60%-79%</option>
+                        <option>80%-100%</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Semester</label>
+                    <select name="Semester">
+                        <option>2</option><option>3</option><option>4</option>
+                        <option>5</option><option>6</option><option>7</option><option>8</option>
+                        <option>9</option><option>10</option><option>11</option><option>12</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Last Semester GPA (0-5)</label>
+                    <input type="number" name="Last" step="0.001" min="0" max="5" placeholder="e.g. 3.75" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="predict-area">
+            <button type="submit">Predict Score</button>
+            
+            {% if result %}
+            <div class="result-box">
+                <span class="result-label">Predicted GPA</span>
+                <div class="result-value">{{ result }}</div>
+            </div>
+            {% endif %}
+        </div>
+        
+    </form>
+    <a href="/" class="back-link">← Return to Home</a>
+</div>
+
+</body>
+</html>

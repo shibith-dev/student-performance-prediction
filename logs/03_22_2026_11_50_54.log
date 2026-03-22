@@ -1,0 +1,94 @@
+[ 2026-03-22 11:50:54,465] INFO - root - Logging Initialized.
+[ 2026-03-22 11:51:03,177] WARNING - werkzeug -  * Debugger is active!
+[ 2026-03-22 11:51:03,181] INFO - werkzeug -  * Debugger PIN: 856-140-019
+[ 2026-03-22 11:51:03,229] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:51:03] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 11:51:05,513] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:51:05] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 11:51:16,786] INFO - root - Prediction pipeline started.
+[ 2026-03-22 11:51:16,799] ERROR - root - Prediction pipeline Failed : [Errno 2] No such file or directory: 'final_models\\model.pkl'
+[ 2026-03-22 11:51:16,801] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:51:16] "POST /predict HTTP/1.1" 200 -
+[ 2026-03-22 11:51:34,042] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:51:34] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 11:51:36,893] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:51:36] "GET /train HTTP/1.1" 200 -
+[ 2026-03-22 11:52:00,758] INFO - root - Training Pipeline Initiated.
+[ 2026-03-22 11:52:00,758] INFO - root - Data Ingestion Initialized.
+[ 2026-03-22 11:52:00,758] INFO - root - Connecting to mongoDB
+[ 2026-03-22 11:52:01,847] INFO - root - Connection Successfull
+[ 2026-03-22 11:52:01,847] INFO - root - Loading the data from mongodb
+[ 2026-03-22 11:52:03,207] INFO - root - 493 records were Successfully loaded
+[ 2026-03-22 11:52:03,390] INFO - root - Removed _id column and replaced 'na' into actuall null values
+[ 2026-03-22 11:52:03,390] INFO - root - Returned 493 records
+[ 2026-03-22 11:52:03,390] INFO - root - Creating the feature_Store directory.
+[ 2026-03-22 11:52:03,439] INFO - root - Successfully saved the CSV file.
+[ 2026-03-22 11:52:03,439] INFO - root - Train Test Split started.
+[ 2026-03-22 11:52:03,474] INFO - root - Train Test Split Completed. Train shape: (394, 16), Test: (99, 16)
+[ 2026-03-22 11:52:03,474] INFO - root - Creating artifact directory.
+[ 2026-03-22 11:52:03,505] INFO - root - Train Test sets saved Successfully.
+[ 2026-03-22 11:52:03,505] INFO - root - Data Ingestion Completed Successfully.
+[ 2026-03-22 11:52:03,505] INFO - root - Reading yaml file from data_schema\schema.yaml
+[ 2026-03-22 11:52:03,505] INFO - root - Schema Loaded successfully.
+[ 2026-03-22 11:52:03,505] INFO - root - Data Validation Initiated.
+[ 2026-03-22 11:52:03,505] INFO - root - Reading dataframe.
+[ 2026-03-22 11:52:03,561] INFO - root - Reading dataframe.
+[ 2026-03-22 11:52:03,571] INFO - root - Dataset Loaded.
+[ 2026-03-22 11:52:03,571] INFO - root - Validating total number of columns received.
+[ 2026-03-22 11:52:03,571] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-22 11:52:03,571] INFO - root - Validating total number of columns received.
+[ 2026-03-22 11:52:03,571] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-22 11:52:03,571] INFO - root - Checking Data Drift.
+[ 2026-03-22 11:52:03,651] INFO - root - Drift status: True
+[ 2026-03-22 11:52:03,665] INFO - root - Data Validation Completed.
+[ 2026-03-22 11:52:03,665] INFO - root - Initializing Data Transformation.
+[ 2026-03-22 11:52:03,671] INFO - root - Fitting preprocessor on training data.
+[ 2026-03-22 11:52:03,759] INFO - root - Data Transformation Completed
+[ 2026-03-22 11:52:03,759] INFO - root - Starting Model Training.
+[ 2026-03-22 11:52:03,759] INFO - root - Loading transformed train and test data.
+[ 2026-03-22 11:52:03,759] INFO - root - Data shapes - x_train: (394, 28), y_train: (394,), x_test: (99, 28), y_test: (99,)
+[ 2026-03-22 11:52:03,759] INFO - root - Starting hyperparameter tuning for models using RandomizedSearchCV.
+[ 2026-03-22 11:52:23,981] INFO - root - Training completed for: Random Forest. Best R2 Score: 0.871977630645835
+[ 2026-03-22 11:52:24,060] INFO - root - Training completed for: Decision Tree. Best R2 Score: 0.8203072293314535
+[ 2026-03-22 11:52:25,605] INFO - root - Training completed for: Gradient Boosting. Best R2 Score: 0.8504296086656492
+[ 2026-03-22 11:52:27,837] INFO - root - Training completed for: AdaBoost. Best R2 Score: 0.8432351017664582
+[ 2026-03-22 11:52:29,342] INFO - root - Training completed for: XGBoost. Best R2 Score: 0.8431727561963164
+[ 2026-03-22 11:52:29,569] INFO - root - Training completed for: Linear Regression. Best R2 Score: 0.8256100359706607
+[ 2026-03-22 11:52:29,734] INFO - root - Training completed for: Ridge. Best R2 Score: 0.8340774697519312
+[ 2026-03-22 11:52:29,840] INFO - root - Training completed for: Lasso. Best R2 Score: 0.8451611466811232
+[ 2026-03-22 11:52:29,927] INFO - root - Training completed for: Elastic Net. Best R2 Score: 0.8442383770010308
+[ 2026-03-22 11:52:29,927] INFO - root - Model Report successfully generated.
+[ 2026-03-22 11:52:29,927] INFO - root - Best Model : Random Forest with a score : 0.871977630645835
+[ 2026-03-22 11:52:30,085] INFO - root - Calculating evaluation metrics (RMSE, MAE, R2 Score)
+[ 2026-03-22 11:52:30,203] INFO - root - Calculating evaluation metrics (RMSE, MAE, R2 Score)
+[ 2026-03-22 11:52:30,203] INFO - root - Train Score : RegressionMetricArtifact(r2_score=0.97911300144143, rmse=0.08470515257800658, mae=0.03561656749341924)
+[ 2026-03-22 11:52:30,203] INFO - root - Test Score : RegressionMetricArtifact(r2_score=0.9178748354725643, rmse=0.17509848629462246, mae=0.11152673514765572)
+[ 2026-03-22 11:52:30,203] INFO - root - Logging experiment results to MLflow for model: RandomForestRegressor
+[ 2026-03-22 11:53:30,218] INFO - root - Successfully logged metrics and model to MLflow for RandomForestRegressor
+[ 2026-03-22 11:53:30,742] INFO - root - Saved the best model to artifacts\03_22_2026_11_50_56\model_trainer\trained_model\model.pkl
+[ 2026-03-22 11:53:31,312] INFO - root - Saved the final model (preprocessor + model) to final_models
+[ 2026-03-22 11:53:31,312] INFO - root - Model training pipeline completed successfully.
+[ 2026-03-22 11:53:31,325] INFO - root - Training Pipeline Successfully Completed.
+[ 2026-03-22 11:53:31,328] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:53:31] "POST /train HTTP/1.1" 200 -
+[ 2026-03-22 11:53:37,446] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:53:37] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 11:53:38,913] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:53:38] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 11:53:48,670] INFO - root - Prediction pipeline started.
+[ 2026-03-22 11:53:49,131] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:53:49] "POST /predict HTTP/1.1" 200 -
+[ 2026-03-22 11:57:40,189] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:57:40] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 11:57:47,467] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:57:47] "GET /train HTTP/1.1" 200 -
+[ 2026-03-22 11:57:49,432] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:57:49] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 11:57:52,075] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:57:52] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 11:58:33,462] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:58:33] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 11:58:50,648] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:58:50] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 11:58:51,797] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:58:51] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 11:59:37,813] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 11:59:37] "GET /train HTTP/1.1" 200 -
+[ 2026-03-22 12:00:39,708] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:00:39] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 12:00:41,037] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:00:41] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 12:00:45,635] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:00:45] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 12:00:47,998] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:00:47] "GET /train HTTP/1.1" 200 -
+[ 2026-03-22 12:00:49,882] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:00:49] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 12:00:51,521] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:00:51] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 12:00:54,454] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:00:54] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 12:02:19,887] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:02:19] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 12:02:38,324] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:02:38] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 12:02:43,357] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:02:43] "GET / HTTP/1.1" 200 -
+[ 2026-03-22 12:02:45,239] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:02:45] "GET /train HTTP/1.1" 200 -
+[ 2026-03-22 12:02:51,445] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:02:51] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-22 12:03:00,414] INFO - root - Prediction pipeline started.
+[ 2026-03-22 12:03:00,913] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:03:00] "POST /predict HTTP/1.1" 200 -
+[ 2026-03-22 12:03:04,016] INFO - werkzeug - 127.0.0.1 - - [22/Mar/2026 12:03:04] "GET / HTTP/1.1" 200 -

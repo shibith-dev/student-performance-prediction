@@ -8,3 +8,4 @@ python-dotenv
 PyYAML
 joblib
 mlflow
+flask
