@@ -1,0 +1,84 @@
+features:
+  Attendance:
+    drift: false
+    metric: PSI
+    type: categorical
+    value: 0.05663776632926376
+  Computer:
+    drift: false
+    metric: ks_test
+    type: numeric
+    value: 0.5633787177358104
+  Department:
+    drift: true
+    metric: PSI
+    type: categorical
+    value: 0.247391560304611
+  English:
+    drift: false
+    metric: ks_test
+    type: numeric
+    value: 0.9938923203499223
+  Extra:
+    drift: false
+    metric: PSI
+    type: categorical
+    value: 0.022130044256463175
+  Gaming:
+    drift: false
+    metric: PSI
+    type: categorical
+    value: 0.019002680659595664
+  Gender:
+    drift: false
+    metric: PSI
+    type: categorical
+    value: 0.007183376020784931
+  HSC:
+    drift: false
+    metric: ks_test
+    type: numeric
+    value: 0.2653617477961139
+  Hometown:
+    drift: false
+    metric: PSI
+    type: categorical
+    value: 0.01155436145763014
+  Income:
+    drift: false
+    metric: PSI
+    type: categorical
+    value: 0.0074679385684913715
+  Job:
+    drift: false
+    metric: PSI
+    type: categorical
+    value: 0.03698160849209783
+  Last:
+    drift: false
+    metric: ks_test
+    type: numeric
+    value: 0.6481646412096705
+  Overall:
+    drift: false
+    metric: ks_test
+    type: numeric
+    value: 0.8352053571100478
+  Preparation:
+    drift: false
+    metric: PSI
+    type: categorical
+    value: 0.03944452415775032
+  SSC:
+    drift: false
+    metric: ks_test
+    type: numeric
+    value: 0.9985678951561808
+  Semester:
+    drift: false
+    metric: ks_test
+    type: numeric
+    value: 0.36671581897988853
+summary:
+  drift_status: true
+  features_checked: 16

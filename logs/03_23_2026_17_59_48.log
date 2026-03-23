@@ -1,0 +1,68 @@
+[ 2026-03-23 17:59:48,545] INFO - root - Logging Initialized.
+[ 2026-03-23 17:59:56,965] INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.3:8080
+[ 2026-03-23 17:59:56,965] INFO - werkzeug - [33mPress CTRL+C to quit[0m
+[ 2026-03-23 18:00:04,972] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 18:00:04] "GET / HTTP/1.1" 200 -
+[ 2026-03-23 18:00:06,210] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 18:00:06] "GET /train HTTP/1.1" 200 -
+[ 2026-03-23 18:00:08,262] INFO - root - Training Pipeline Started.
+[ 2026-03-23 18:00:08,266] INFO - root - Training Pipeline Initiated.
+[ 2026-03-23 18:00:08,266] INFO - root - Data Ingestion Initialized.
+[ 2026-03-23 18:00:08,268] INFO - root - Connecting to mongoDB
+[ 2026-03-23 18:00:08,911] INFO - root - Connection Successfull
+[ 2026-03-23 18:00:08,911] INFO - root - Loading the data from mongodb
+[ 2026-03-23 18:00:10,024] INFO - root - 493 records were Successfully loaded
+[ 2026-03-23 18:00:10,024] INFO - root - Removed _id column and replaced 'na' into actuall null values
+[ 2026-03-23 18:00:10,024] INFO - root - Returned 493 records
+[ 2026-03-23 18:00:10,032] INFO - root - Creating the feature_Store directory.
+[ 2026-03-23 18:00:10,153] INFO - root - Successfully saved the CSV file.
+[ 2026-03-23 18:00:10,153] INFO - root - Train Test Split started.
+[ 2026-03-23 18:00:10,165] INFO - root - Train Test Split Completed. Train shape: (394, 16), Test: (99, 16)
+[ 2026-03-23 18:00:10,165] INFO - root - Creating artifact directory.
+[ 2026-03-23 18:00:10,187] INFO - root - Train Test sets saved Successfully.
+[ 2026-03-23 18:00:10,187] INFO - root - Data Ingestion Completed Successfully.
+[ 2026-03-23 18:00:10,187] INFO - root - Reading yaml file from data_schema\schema.yaml
+[ 2026-03-23 18:00:10,187] INFO - root - Schema Loaded successfully.
+[ 2026-03-23 18:00:10,187] INFO - root - Data Validation Initiated.
+[ 2026-03-23 18:00:10,187] INFO - root - Reading dataframe.
+[ 2026-03-23 18:00:10,204] INFO - root - Reading dataframe.
+[ 2026-03-23 18:00:10,211] INFO - root - Dataset Loaded.
+[ 2026-03-23 18:00:10,211] INFO - root - Validating total number of columns received.
+[ 2026-03-23 18:00:10,211] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-23 18:00:10,213] INFO - root - Validating total number of columns received.
+[ 2026-03-23 18:00:10,213] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-23 18:00:10,213] INFO - root - Checking Data Drift.
+[ 2026-03-23 18:00:10,256] INFO - root - Drift status: True
+[ 2026-03-23 18:00:10,280] INFO - root - Data Validation Completed.
+[ 2026-03-23 18:00:10,284] INFO - root - Initializing Data Transformation.
+[ 2026-03-23 18:00:10,296] INFO - root - Fitting preprocessor on training data.
+[ 2026-03-23 18:00:10,364] INFO - root - Data Transformation Completed
+[ 2026-03-23 18:00:10,368] INFO - root - Setting up mlflow tracking.
+[ 2026-03-23 18:00:13,135] INFO - root - MLflow setup completed.
+[ 2026-03-23 18:00:13,135] INFO - root - Starting Model Training.
+[ 2026-03-23 18:00:13,135] INFO - root - Loading transformed train and test data.
+[ 2026-03-23 18:00:13,135] INFO - root - Data shapes - x_train: (394, 28), y_train: (394,), x_test: (99, 28), y_test: (99,)
+[ 2026-03-23 18:00:13,135] INFO - root - Starting hyperparameter tuning for models using RandomizedSearchCV.
+[ 2026-03-23 18:00:26,457] INFO - root - Training completed for: Random Forest. Best R2 Score: 0.871977630645835
+[ 2026-03-23 18:00:26,644] INFO - root - Training completed for: Decision Tree. Best R2 Score: 0.8203072293314535
+[ 2026-03-23 18:00:28,041] INFO - root - Training completed for: Gradient Boosting. Best R2 Score: 0.8504296086656492
+[ 2026-03-23 18:00:30,269] INFO - root - Training completed for: AdaBoost. Best R2 Score: 0.8432351017664582
+[ 2026-03-23 18:00:31,179] INFO - root - Training completed for: XGBoost. Best R2 Score: 0.8431727561963164
+[ 2026-03-23 18:00:31,251] INFO - root - Training completed for: Linear Regression. Best R2 Score: 0.8256100359706607
+[ 2026-03-23 18:00:31,343] INFO - root - Training completed for: Ridge. Best R2 Score: 0.8340774697519312
+[ 2026-03-23 18:00:31,416] INFO - root - Training completed for: Lasso. Best R2 Score: 0.845161146681123
+[ 2026-03-23 18:00:31,494] INFO - root - Training completed for: Elastic Net. Best R2 Score: 0.8442383770010308
+[ 2026-03-23 18:00:31,494] INFO - root - Model Report successfully generated.
+[ 2026-03-23 18:00:31,494] INFO - root - Best Model : Random Forest with a score : 0.871977630645835
+[ 2026-03-23 18:00:31,558] INFO - root - Calculating evaluation metrics (RMSE, MAE, R2 Score)
+[ 2026-03-23 18:00:31,618] INFO - root - Calculating evaluation metrics (RMSE, MAE, R2 Score)
+[ 2026-03-23 18:00:31,618] INFO - root - Train Score : RegressionMetricArtifact(r2_score=0.97911300144143, rmse=0.08470515257800658, mae=0.03561656749341924)
+[ 2026-03-23 18:00:31,618] INFO - root - Test Score : RegressionMetricArtifact(r2_score=0.9178748354725643, rmse=0.17509848629462246, mae=0.11152673514765572)
+[ 2026-03-23 18:00:31,618] INFO - root - Logging experiment results to MLflow for model: RandomForestRegressor
+[ 2026-03-23 18:00:47,902] INFO - root - Successfully logged metrics and model to MLflow for RandomForestRegressor
+[ 2026-03-23 18:00:48,549] INFO - root - Saved the best model to artifacts\03_23_2026_17_59_50\model_trainer\trained_model\model.pkl
+[ 2026-03-23 18:00:49,030] INFO - root - Saved the final model (preprocessor + model) to final_models
+[ 2026-03-23 18:00:49,030] INFO - root - Model training pipeline completed successfully.
+[ 2026-03-23 18:00:49,030] INFO - root - Training Pipeline Successfully Completed.
+[ 2026-03-23 18:00:49,046] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 18:00:49] "POST /train HTTP/1.1" 200 -

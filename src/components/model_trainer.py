@@ -44,7 +44,28 @@ class ModelTrainer:
         try:
             self.data_transformation_artifacts = data_transformation_artifacts
             self.model_trainer_config = model_trainer_config
+
+            self.setup_mlflow()
+            
         except Exception as e:
+            raise CustomException(e)
+    
+    def setup_mlflow(self):
+        try:
+            logging.info("Setting up mlflow tracking.")
+
+            mlflow.set_tracking_uri("sqlite:///mlflow.db")
+
+            experiment_name = "student_performance"
+
+            if mlflow.get_experiment_by_name(experiment_name) is None:
+                mlflow.create_experiment(experiment_name)
+
+            mlflow.set_experiment(experiment_name)
+            logging.info("MLflow setup completed.")
+
+        except Exception as e:
+            logging.error("Error occured while settingup mlflow.")
             raise CustomException(e)
 
     def track_mlflow(self, model, train_metrics, test_metrics):
@@ -61,7 +82,7 @@ class ModelTrainer:
             mlflow.log_metric("test_mae", test_metrics.mae)
             mlflow.log_metric("test_r2_score", test_metrics.r2_score)
 
-            mlflow.sklearn.log_model(model, name="model")
+            mlflow.sklearn.log_model(model, artifact_path="model")
         logging.info(f"Successfully logged metrics and model to MLflow for {type(model).__name__}")
 
     def get_evaluation_metrics(self, y_true, y_pred):

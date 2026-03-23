@@ -1,0 +1,73 @@
+[ 2026-03-23 17:54:02,195] INFO - root - Logging Initialized.
+[ 2026-03-23 17:54:17,333] INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.3:8080
+[ 2026-03-23 17:54:17,333] INFO - werkzeug - [33mPress CTRL+C to quit[0m
+[ 2026-03-23 17:54:32,690] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 17:54:32] "GET / HTTP/1.1" 200 -
+[ 2026-03-23 17:54:33,071] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 17:54:33] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[ 2026-03-23 17:54:35,461] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 17:54:35] "GET /predict HTTP/1.1" 200 -
+[ 2026-03-23 17:54:43,953] INFO - root - Prediction pipeline started.
+[ 2026-03-23 17:54:44,739] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 17:54:44] "POST /predict HTTP/1.1" 200 -
+[ 2026-03-23 17:54:47,909] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 17:54:47] "GET / HTTP/1.1" 200 -
+[ 2026-03-23 17:54:49,338] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 17:54:49] "GET /train HTTP/1.1" 200 -
+[ 2026-03-23 17:55:45,792] INFO - root - Training Pipeline Started.
+[ 2026-03-23 17:55:45,792] INFO - root - Training Pipeline Initiated.
+[ 2026-03-23 17:55:45,792] INFO - root - Data Ingestion Initialized.
+[ 2026-03-23 17:55:45,792] INFO - root - Connecting to mongoDB
+[ 2026-03-23 17:55:46,348] INFO - root - Connection Successfull
+[ 2026-03-23 17:55:46,348] INFO - root - Loading the data from mongodb
+[ 2026-03-23 17:55:47,584] INFO - root - 493 records were Successfully loaded
+[ 2026-03-23 17:55:47,613] INFO - root - Removed _id column and replaced 'na' into actuall null values
+[ 2026-03-23 17:55:47,613] INFO - root - Returned 493 records
+[ 2026-03-23 17:55:47,613] INFO - root - Creating the feature_Store directory.
+[ 2026-03-23 17:55:49,431] INFO - root - Successfully saved the CSV file.
+[ 2026-03-23 17:55:49,431] INFO - root - Train Test Split started.
+[ 2026-03-23 17:55:49,449] INFO - root - Train Test Split Completed. Train shape: (394, 16), Test: (99, 16)
+[ 2026-03-23 17:55:49,449] INFO - root - Creating artifact directory.
+[ 2026-03-23 17:55:49,482] INFO - root - Train Test sets saved Successfully.
+[ 2026-03-23 17:55:49,482] INFO - root - Data Ingestion Completed Successfully.
+[ 2026-03-23 17:55:49,482] INFO - root - Reading yaml file from data_schema\schema.yaml
+[ 2026-03-23 17:55:49,493] INFO - root - Schema Loaded successfully.
+[ 2026-03-23 17:55:49,493] INFO - root - Data Validation Initiated.
+[ 2026-03-23 17:55:49,493] INFO - root - Reading dataframe.
+[ 2026-03-23 17:55:49,511] INFO - root - Reading dataframe.
+[ 2026-03-23 17:55:49,517] INFO - root - Dataset Loaded.
+[ 2026-03-23 17:55:49,517] INFO - root - Validating total number of columns received.
+[ 2026-03-23 17:55:49,517] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-23 17:55:49,522] INFO - root - Validating total number of columns received.
+[ 2026-03-23 17:55:49,522] INFO - root - Validating datatype of each column in the dataframe.
+[ 2026-03-23 17:55:49,522] INFO - root - Checking Data Drift.
+[ 2026-03-23 17:55:49,598] INFO - root - Drift status: True
+[ 2026-03-23 17:55:49,638] INFO - root - Data Validation Completed.
+[ 2026-03-23 17:55:49,638] INFO - root - Initializing Data Transformation.
+[ 2026-03-23 17:55:49,647] INFO - root - Fitting preprocessor on training data.
+[ 2026-03-23 17:55:49,731] INFO - root - Data Transformation Completed
+[ 2026-03-23 17:55:49,731] INFO - root - Setting up mlflow tracking.
+[ 2026-03-23 17:55:52,981] INFO - root - MLflow setup completed.
+[ 2026-03-23 17:55:52,981] INFO - root - Starting Model Training.
+[ 2026-03-23 17:55:52,981] INFO - root - Loading transformed train and test data.
+[ 2026-03-23 17:55:52,981] INFO - root - Data shapes - x_train: (394, 28), y_train: (394,), x_test: (99, 28), y_test: (99,)
+[ 2026-03-23 17:55:52,981] INFO - root - Starting hyperparameter tuning for models using RandomizedSearchCV.
+[ 2026-03-23 17:56:05,877] INFO - root - Training completed for: Random Forest. Best R2 Score: 0.871977630645835
+[ 2026-03-23 17:56:06,080] INFO - root - Training completed for: Decision Tree. Best R2 Score: 0.8203072293314535
+[ 2026-03-23 17:56:07,835] INFO - root - Training completed for: Gradient Boosting. Best R2 Score: 0.8504296086656492
+[ 2026-03-23 17:56:10,717] INFO - root - Training completed for: AdaBoost. Best R2 Score: 0.8432351017664582
+[ 2026-03-23 17:56:11,936] INFO - root - Training completed for: XGBoost. Best R2 Score: 0.8431727561963164
+[ 2026-03-23 17:56:12,085] INFO - root - Training completed for: Linear Regression. Best R2 Score: 0.8256100359706607
+[ 2026-03-23 17:56:12,165] INFO - root - Training completed for: Ridge. Best R2 Score: 0.8340774697519312
+[ 2026-03-23 17:56:12,236] INFO - root - Training completed for: Lasso. Best R2 Score: 0.845161146681123
+[ 2026-03-23 17:56:12,326] INFO - root - Training completed for: Elastic Net. Best R2 Score: 0.8442383770010308
+[ 2026-03-23 17:56:12,327] INFO - root - Model Report successfully generated.
+[ 2026-03-23 17:56:12,327] INFO - root - Best Model : Random Forest with a score : 0.871977630645835
+[ 2026-03-23 17:56:12,406] INFO - root - Calculating evaluation metrics (RMSE, MAE, R2 Score)
+[ 2026-03-23 17:56:12,502] INFO - root - Calculating evaluation metrics (RMSE, MAE, R2 Score)
+[ 2026-03-23 17:56:12,505] INFO - root - Train Score : RegressionMetricArtifact(r2_score=0.97911300144143, rmse=0.08470515257800658, mae=0.03561656749341924)
+[ 2026-03-23 17:56:12,505] INFO - root - Test Score : RegressionMetricArtifact(r2_score=0.9178748354725643, rmse=0.17509848629462246, mae=0.11152673514765572)
+[ 2026-03-23 17:56:12,505] INFO - root - Logging experiment results to MLflow for model: RandomForestRegressor
+[ 2026-03-23 17:56:32,644] INFO - root - Successfully logged metrics and model to MLflow for RandomForestRegressor
+[ 2026-03-23 17:56:33,003] INFO - root - Saved the best model to artifacts\03_23_2026_17_54_06\model_trainer\trained_model\model.pkl
+[ 2026-03-23 17:56:33,499] INFO - root - Saved the final model (preprocessor + model) to final_models
+[ 2026-03-23 17:56:33,499] INFO - root - Model training pipeline completed successfully.
+[ 2026-03-23 17:56:33,508] INFO - root - Training Pipeline Successfully Completed.
+[ 2026-03-23 17:56:33,508] INFO - werkzeug - 127.0.0.1 - - [23/Mar/2026 17:56:33] "POST /train HTTP/1.1" 200 -

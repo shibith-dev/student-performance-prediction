@@ -75,7 +75,3 @@ class TrainingPipeline:
         except Exception as e:
             logging.error("Error occured in Training Pipline.")
             raise CustomException(e)
-        
-
-    
-
