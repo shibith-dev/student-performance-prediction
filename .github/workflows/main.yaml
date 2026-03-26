@@ -16,10 +16,9 @@ jobs:
   integration:
     name: Continuous Integration
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Lint code
         run: echo "Linting repository"
@@ -27,18 +26,16 @@ jobs:
       - name: Run unit tests
         run: echo "Running unit tests"
 
-
   build-and-push-ecr-image:
     name: Continuous Delivery
     needs: integration
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -46,7 +43,7 @@ jobs:
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build and Push Docker Image
         env:
@@ -57,35 +54,47 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-
   Continuous-Deployment:
     name: Continuous Deployment
     needs: build-and-push-ecr-image
     runs-on: self-hosted
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      # --- THE CRITICAL FIX IS HERE ---
+      # Wipe the server clean of old, bloated images BEFORE pulling the new one.
+      # This guarantees you have maximum disk space available for extraction.
+      - name: Cleanup unused Docker resources
+        run: |
+          docker system prune -af --volumes
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Pull latest Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
         run: |
-          docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+          docker pull $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
       - name: Stop and remove existing container
         run: |
           docker ps -q --filter "name=mltest" | grep -q . && docker stop mltest && docker rm -fv mltest || true
 
       - name: Run container
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
         run: |
           docker run -d \
             -p 8080:8080 \
@@ -95,7 +104,4 @@ jobs:
             -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
             -e AWS_REGION=${{ secrets.AWS_REGION }} \
             -e MONGODB_URI=${{ secrets.MONGODB_URI }} \
-            ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
-
-      - name: Cleanup unused Docker resources
-        run: docker system prune -f
+            $ECR_REGISTRY/$ECR_REPOSITORY:latest
